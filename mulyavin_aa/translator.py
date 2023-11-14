@@ -19,4 +19,6 @@ def translate_to_en(text: str, translator: transformers.pipelines.base.Pipeline)
     :param translator: Пайплайна для модели переводчика языка
     :return: Переведенный текст
     """
-    return translator(text)[0]['translation_text']
+    text = translator(text)[0]['translation_text']
+    print(text)
+    return text
