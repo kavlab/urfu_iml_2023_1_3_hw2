@@ -39,8 +39,8 @@ def main_app() -> None:
     """
 
     st_page_rename({"run.py": "Главная страница",
-                    "pages\page_one.py": "Генератор аудио",
-                    "pages\page_two.py": "Описание изображения"})
+                    "pages/page_one.py": "Генератор аудио",
+                    "pages/page_two.py": "Описание изображения"})
 
     st.markdown(read_readme(), unsafe_allow_html=True)
 
