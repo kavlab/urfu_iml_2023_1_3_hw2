@@ -1,69 +1,49 @@
 import streamlit as st
 
-from mulyavin_aa import langdetector
-from mulyavin_aa import translator
-from kuznetsov_av import text_to_speech_converter
-
-LANG_DETECTOR = "LANG_DETECTOR"
-TRANSLATOR = "TRANSLATOR"
-TEXT_TO_SPEECH = "TEXT_TO_SPEECH"
-SPEAKER_DATASET = "SPEAKER_DATASET"
+from pathlib import Path
 
 
-@st.cache_resource
-def load_models() -> dict:
+def st_page_rename(pages_name: dict[str, str]) -> None:
     """
-    Получение справочника моделей
-    :return: Справочник моделей
+    Переименование страниц в сайдбаре
+    Временный хак, так как другие способы не сработали
+    :param pages_name: Список py файлов и имен
     """
-    models = dict()
-    models[LANG_DETECTOR] = langdetector.load_text_detection_model()
-    models[TRANSLATOR] = translator.load_text_translator_model()
-    models[TEXT_TO_SPEECH] = text_to_speech_converter.load_model()
-    models[SPEAKER_DATASET] = text_to_speech_converter.load_speaker_dataset()
+    from streamlit.source_util import get_pages as st_get_pages
+    from streamlit.source_util import _on_pages_changed as st_on_pages_changed
 
-    return models
+    pages = st_get_pages("")
+    for page_k, page_v in pages.items():
+        script_path = Path(page_v["script_path"])
+
+        for page_name_k, page_name_v in pages_name.items():
+            name_path = Path(page_name_k)
+
+            if Path.samefile(script_path, name_path):
+                page_v["page_name"] = page_name_v
+
+    st_on_pages_changed.send()
 
 
-def main_app():
+def read_readme() -> str:
     """
-    Основная программа
+    Чтение файла README.md
+    :return: Текст
+    """
+    return Path("README.md").read_text(encoding='utf-8')
+
+
+def main_app() -> None:
+    """
+    Запуск основного приложения
     """
 
-    models = load_models()
+    st_page_rename({"run.py": "Главная страница",
+                    "pages\page_one.py": "Генератор аудио",
+                    "pages\page_two.py": "Описание изображения"})
 
-    st.title = 'Домашнее задание'
-
-    # Оформление заголовка
-    st.header('Домашнее задание', divider='gray')
-
-    input_text = st.text_area(
-        'Введите текст на русском или английском языке и нажмите кнопку генератора:')
-
-    if st.button('Генерировать!!!'):
-        # Определение языка
-        text_lang = langdetector.lang_detect(input_text, models[LANG_DETECTOR])
-        if text_lang not in ['ru', 'en']:
-            st.error('Язык текста не может быть определен')
-            return
-
-        # Перевод языка если не en
-        if text_lang in ['ru']:
-            input_text = translator.translate_to_en(input_text, models[TRANSLATOR])
-
-        tab1, tab2, tab3 = st.tabs(['Озвученный текст', 'Таб 2', 'Таб 3'])
-        with tab1:
-            st.header("Озвученный текст на английском языке")
-            # Преобразование текста в речь
-            audio_data, sampling_rate = text_to_speech_converter.text_to_speech(
-                input_text, models[TEXT_TO_SPEECH], models[SPEAKER_DATASET])
-            st.audio(data=audio_data, sample_rate=sampling_rate)
-
-        with tab2:
-            st.header("Таб 2")
-
-        with tab3:
-            st.header("Таб 3")
+    st.markdown(read_readme(), unsafe_allow_html=True)
 
 
+# Запуск через streamlit
 main_app()
