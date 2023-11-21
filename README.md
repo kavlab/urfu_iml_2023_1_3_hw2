@@ -19,7 +19,7 @@
 ## Как запустить
 Запуск осуществляется через модуль streamlit:
 ```
-streamlit run <путь>\run.py
+streamlit run run.py
 ```
 
 ## Как использовать

@@ -26,12 +26,18 @@ def load_image():
         return None
 
 
+@st.cache_resource
+def load_models():
+    processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
+    model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
+    return processor, model
+
+
 def get_description_image():
     """
     Функция get_description_image() открывает загруженное изображение пользователем и генерирует описание его
     """
-    processor = BlipProcessor.from_pretrained("Salesforce/blip-image-captioning-large")
-    model = BlipForConditionalGeneration.from_pretrained("Salesforce/blip-image-captioning-large")
+    processor, model = load_models()
 
     raw_image = Image.open("image.png")
 
