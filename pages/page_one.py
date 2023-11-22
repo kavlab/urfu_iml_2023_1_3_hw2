@@ -49,7 +49,7 @@ def page_one():
         if text_lang in ['ru']:
             input_text = translator.translate_to_en(input_text, models[TRANSLATOR])
 
-        st.subheader('Озвученный текст на английском языке:', divider='gray')
+        st.subheader('Озвученный текст на английском языке', divider='gray')
 
         st.text(input_text)
 
