@@ -49,11 +49,16 @@ def page_one():
         if text_lang in ['ru']:
             input_text = translator.translate_to_en(input_text, models[TRANSLATOR])
 
-        st.header("Озвученный текст на английском языке")
+        st.subheader('Озвученный текст на английском языке:', divider='gray')
+
+        st.text(input_text)
 
         # Преобразование текста в речь
-        audio_data, sampling_rate = text_to_speech_converter.text_to_speech(
-            input_text, models[TEXT_TO_SPEECH], models[SPEAKER_DATASET])
+        with st.status('Пожалуйста подождите, идет преобразование текста в речь...') as status:
+            audio_data, sampling_rate = text_to_speech_converter.text_to_speech(
+                input_text, models[TEXT_TO_SPEECH], models[SPEAKER_DATASET])
+            status.update(label='Преобразование завершено. Для прослушивания нажмите кнопку воспроизведения.', state='complete')
+        
         st.audio(data=audio_data, sample_rate=sampling_rate)
 
 
