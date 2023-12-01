@@ -1,6 +1,6 @@
 ---
-title: Urfu Pe
-emoji: 🌖
+title: URFU PE
+emoji: 💻
 colorFrom: yellow
 colorTo: blue
 sdk: streamlit
