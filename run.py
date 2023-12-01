@@ -30,7 +30,8 @@ def read_readme() -> str:
     Чтение файла README.md
     :return: Текст
     """
-    return Path("README.md").read_text(encoding='utf-8')
+    text = Path("README.md").read_text(encoding='utf-8')
+    return text[text.find('#'):]
 
 
 def main_app() -> None:
