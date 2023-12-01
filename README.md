@@ -1,3 +1,14 @@
+---
+title: URFU PE
+emoji: 💻
+colorFrom: yellow
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.28.2
+app_file: run.py
+pinned: false
+---
+
 # Программная инженерия. Практическое задание №2
 
 Приложение разработано с использованием фреймворка [Streamlit](https://streamlit.io/).
