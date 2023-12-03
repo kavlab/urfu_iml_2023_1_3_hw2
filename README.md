@@ -57,7 +57,7 @@ streamlit run run.py
 ### Как использовать API
 Описание методов API генерируется Swagger и доступно по адресу
 ```
-<hots>/docs
+<host>/docs
 ```
 
 #### Пример вызова сервиса Определение языка текста
@@ -100,5 +100,26 @@ streamlit run run.py
 ```
 {
     "text": "Good day to all cats!"
+}
+```
+
+
+#### Пример вызова сервиса Преобразование текста в речь
+Вызвать url сервиса ```<host>/text-to-speech/convert/``` методом POST
+
+![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/kuznetsov_av/text_to_speech_image_api.png)
+
+Передаваемые параметры:
+```
+{
+    "text": "FastAPI is a modern, fast (high-performance), web framework for building APIs with Python 3.8+ based on standard Python type hints."
+}
+```
+
+Результат выполнения (значение в audio сокращено):
+```
+{
+    "audio": "4HXHYOWAMX2TVFFRYI5NQYFYHKESNWR2YAPHKOWFOCYTULNSF45YUZMDHJEKRJB2QNGMMOX3V6QDV6 ... F5Z5S37LOH7G2ZLSRYSKC4Z47GBXG56ZQ5YY6BEENY=",
+    "sampling_rate": 16000
 }
 ```
