@@ -6,6 +6,10 @@ import mulyavin_aa.translator
 import mulyavin_aa.model.langdetector
 import mulyavin_aa.model.translator
 
+import base64
+from kuznetsov_av import text_to_speech_converter as t2s
+from kuznetsov_av import Request, Response
+
 app = FastAPI()
 
 
@@ -22,7 +26,12 @@ async def root():
                 },
                 {
                     "descr": "API для перевода текста из Ru в En",
-                    "base_url": "/translator"}
+                    "base_url": "/translator"
+                },
+                {
+                    "descr": "API преобразования текста в речь",
+                    "base_url": "/text-to-speech"
+                }
             ]}
 
 
@@ -43,6 +52,17 @@ def lang_detect(request: mulyavin_aa.model.translator.Request) \
     text = mulyavin_aa.translator.translate_to_en(request.text, pipe)
 
     return mulyavin_aa.model.translator.Response(text=text)
+
+
+@app.post('/text-to-speech/convert/')
+async def text_to_speech(entity: Request) -> Response:
+    """
+    Text-to-audio generation method using text_to_speech_converter.
+    """
+    synthesiser = t2s.load_model()
+    embeddings_dataset = t2s.load_speaker_dataset()
+    audio, sampling_rate = t2s.text_to_speech(entity.text, synthesiser, embeddings_dataset)
+    return Response(audio=base64.b32encode(audio), sampling_rate=sampling_rate)
 
 
 # Запуск как приложения
