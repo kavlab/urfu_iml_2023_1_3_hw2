@@ -9,7 +9,7 @@ app_file: run.py
 pinned: false
 ---
 
-# Программная инженерия. Практическое задание №2
+# Программная инженерия. Практическое задание №2 и №3
 
 Приложение разработано с использованием фреймворка [Streamlit](https://streamlit.io/).
 Состоит из двух страниц и Главной страницы:
@@ -21,19 +21,26 @@ pinned: false
 3. Описание изображения - позволяет получить описание изображения на русском языке. Использует 1 модель:
     - Классификация и описание изображений
 
+API разработано с использованием фреймворка [FastAPI]('https://fastapi.tiangolo.com/'). API доступные для использования:
+1. ```/langdetector/detect``` - Определение языка текста
+2. ```/translator/translate``` - Перевод текста с языка Ru на En
+
 ## Используемые модели
 - Определение языка текста - [papluca/xlm-roberta-base-language-detection](https://huggingface.co/papluca/xlm-roberta-base-language-detection)
 - Перевод текста с языка Ru на En - [Helsinki-NLP/opus-mt-ru-en](https://huggingface.co/Helsinki-NLP/opus-mt-ru-en)
 - Озвучивание текста на английском языке - [microsoft/speecht5_tts](https://huggingface.co/microsoft/speecht5_tts)
 - Классификация и описание изображений. Модель описания изображения [Salesforce/blip-image-captioning-large](https://huggingface.co/Salesforce/blip-image-captioning-large)
 
-## Как запустить
+## Как запустить Web-приложение
 Запуск осуществляется через модуль streamlit:
 ```
 streamlit run run.py
 ```
 
-## Как использовать
+## Как запустить API-сервер
+```uvicorn api:app``` либо ```python api.py```
+
+## Как использовать Web-приложение
 После запуска приложение открывается на Главной странице. Выбор режима работы приложения доступен слева в меню
 
 ### Генератор аудио
@@ -46,3 +53,52 @@ streamlit run run.py
 Необходимо выбрать изображение и нажать кнопку "Получить описание изображения". В результате появится текстовое описание изображения на русском языке.
 
 ![Результат работы моделей "Классификации и описания изображений"](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/zvereva_ev/image_result.jpg)
+
+### Как использовать API
+Описание методов API генерируется Swagger и доступно по адресу
+```
+<hots>/docs
+```
+
+#### Пример вызова сервиса Определение языка текста
+Вызвать url сервиса ```<host>/langdetector/detect``` методом POST
+
+![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/mulyavin_aa/PostmanLangDetect.png)
+
+Передаваемые параметры:
+```
+{
+    "text": "Приветик от Мити кота"
+}
+```
+
+Результат выполнения:
+```
+{
+    "langs": [
+        {
+            "label": "bg",
+            "score": 0.9945043921470642
+        }
+    ]
+}
+```
+
+#### Пример вызова сервиса Перевод текста с языка Ru на En
+Вызвать url сервиса ```<host>/translator/translate``` методом POST
+
+![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/mulyavin_aa/PostmanTranslate.png)
+
+Передаваемые параметры:
+```
+{
+    "text": "Приветик от Мити кота"
+}
+```
+
+Результат выполнения:
+```
+{
+    "text": "Hello from Michi Cat."
+}
+```
