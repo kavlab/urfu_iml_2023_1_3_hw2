@@ -25,6 +25,7 @@ API разработано с использованием фреймворка 
 1. ```/langdetector/detect``` - Определение языка текста
 2. ```/translator/translate``` - Перевод текста с языка Ru на En
 3. ```/text-to-speech/convert``` - Преобразование текста на английском языке в речь
+4. ```/get_description_image/predict``` - Описание загруженного изображения
 
 ## Используемые модели
 - Определение языка текста - [papluca/xlm-roberta-base-language-detection](https://huggingface.co/papluca/xlm-roberta-base-language-detection)
@@ -122,5 +123,24 @@ streamlit run run.py
 {
     "audio": "4HXHYOWAMX2TVFFRYI5NQYFYHKESNWR2YAPHKOWFOCYTULNSF45YUZMDHJEKRJB2QNGMMOX3V6QDV6 ... F5Z5S37LOH7G2ZLSRYSKC4Z47GBXG56ZQ5YY6BEENY=",
     "sampling_rate": 16000
+}
+```
+
+#### Пример вызова сервиса Описание загруженного изображения
+Вызвать url сервиса ```<host>/get_description_image/predict/``` методом POST
+
+![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/zvereva_ev/API_image_postman.jpg)
+
+Передаваемые параметры:
+```
+{
+    "text": "https://fikiwiki.com/uploads/posts/2022-02/1645000127_53-fikiwiki-com-p-kartinki-krasivie-babochki-narisovannie-55.png"
+}
+```
+
+Результат выполнения:
+```
+{
+    "text": "Фото бабочки с оранжевыми крыльями и белыми точками"
 }
 ```
