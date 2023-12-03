@@ -7,8 +7,8 @@ import mulyavin_aa.model.langdetector
 import mulyavin_aa.model.translator
 
 import base64
-from kuznetsov_av import text_to_speech_converter as t2s
-from kuznetsov_av import Request, Response
+from kuznetsov_av.api import Request, Response
+import kuznetsov_av.text_to_speech_converter as t2s
 
 app = FastAPI()
 

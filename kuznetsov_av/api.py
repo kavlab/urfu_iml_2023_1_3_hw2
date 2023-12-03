@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import text_to_speech_converter as t2s
+import kuznetsov_av.text_to_speech_converter as t2s
 import base64
 
 class Request(BaseModel):
