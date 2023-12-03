@@ -36,16 +36,15 @@ def lang_detect(request: mulyavin_aa.model.langdetector.Request) \
 
 
 @app.post("/translator/translate")
-def lang_detect(request: mulyavin_aa.model.translator.TranslatorRequest) \
-        -> mulyavin_aa.model.translator.TranslatorResponse:
+def lang_detect(request: mulyavin_aa.model.translator.Request) \
+        -> mulyavin_aa.model.translator.Response:
     """Перевод текста из Ru в En"""
-    response = mulyavin_aa.model.translator.TranslatorResponse()
     pipe = mulyavin_aa.translator.load_text_translator_model()
-    response.text = mulyavin_aa.translator.translate_to_en(request.text, pipe)
+    text = mulyavin_aa.translator.translate_to_en(request.text, pipe)
 
-    return response
+    return mulyavin_aa.model.translator.Response(text=text)
 
 
 # Запуск как приложения
 if __name__ == '__main__':
-    uvicorn.run(app, port=8080, host='127.0.0.1')
+    uvicorn.run(app, port=8000, host='127.0.0.1')

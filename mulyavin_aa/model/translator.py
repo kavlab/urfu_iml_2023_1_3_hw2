@@ -1,9 +1,11 @@
 from pydantic import BaseModel
 
 
-class TranslatorRequest(BaseModel):
+class Request(BaseModel):
+    """Структура запроса"""
     text: str
 
 
-class TranslatorResponse(BaseModel):
+class Response(BaseModel):
+    """Структура ответа"""
     text: str
