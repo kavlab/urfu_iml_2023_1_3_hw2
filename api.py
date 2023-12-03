@@ -10,6 +10,9 @@ import base64
 from kuznetsov_av.api import Request, Response
 import kuznetsov_av.text_to_speech_converter as t2s
 
+import requests
+from zvereva_ev import get_description_image, develop_api_app
+
 app = FastAPI()
 
 
@@ -31,6 +34,10 @@ async def root():
                 {
                     "descr": "API преобразования текста в речь",
                     "base_url": "/text-to-speech"
+                },
+                {
+                    "descr": "API для описания загруженного изображения",
+                    "base_url": "/get_description_image"
                 }
             ]}
 
@@ -63,6 +70,20 @@ async def text_to_speech(entity: Request) -> Response:
     embeddings_dataset = t2s.load_speaker_dataset()
     audio, sampling_rate = t2s.text_to_speech(entity.text, synthesiser, embeddings_dataset)
     return Response(audio=base64.b32encode(audio), sampling_rate=sampling_rate)
+
+
+@app.post("/get_description_image/predict/")
+async def get_description_image_predict(item: develop_api_app.Url):
+    """
+    Получение ссылки на изображение. Запись изображения в директорию zvereva_ev
+    под названием 'image.png для получения его описания
+    """
+    response = requests.get(item.text, stream=True)
+    # сохранение изображения для дальнейшей передачи в модель
+    with open("image.png", "wb") as f:
+        f.write(response.content)
+
+    return get_description_image.get_description_image()
 
 
 # Запуск как приложения
