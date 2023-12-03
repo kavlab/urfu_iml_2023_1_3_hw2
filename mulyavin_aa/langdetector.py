@@ -12,7 +12,9 @@ def load_text_detection_model() -> transformers.pipelines.base.Pipeline:
     return pipeline("text-classification", model="papluca/xlm-roberta-base-language-detection")
 
 
-def lang_detect(text: str, langdetector: transformers.pipelines.base.Pipeline) -> str | None:
+def lang_detect(text: str,
+                langdetector: transformers.pipelines.base.Pipeline,
+                is_any: bool = False) -> str:
     """
     Определение языка для введенного текста
     :param text: Текст
@@ -29,6 +31,8 @@ def lang_detect(text: str, langdetector: transformers.pipelines.base.Pipeline) -
             break
         print(text_langs[i])
         if text_langs[i]['label'] in ['ru', 'en']:
+            return text_langs[i]['label']
+        if is_any:
             return text_langs[i]['label']
 
     return None
