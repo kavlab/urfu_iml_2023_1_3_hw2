@@ -68,7 +68,7 @@ streamlit run run.py
 Передаваемые параметры:
 ```
 {
-    "text": "Приветик от Мити кота"
+    "text": "Доброго деня всем котам!"
 }
 ```
 
@@ -77,8 +77,8 @@ streamlit run run.py
 {
     "langs": [
         {
-            "label": "bg",
-            "score": 0.9945043921470642
+            "label": "ru",
+            "score": 0.9351206421852112
         }
     ]
 }
@@ -92,13 +92,13 @@ streamlit run run.py
 Передаваемые параметры:
 ```
 {
-    "text": "Приветик от Мити кота"
+    "text": "Доброго деня всем котам!"
 }
 ```
 
 Результат выполнения:
 ```
 {
-    "text": "Hello from Michi Cat."
+    "text": "Good day to all cats!"
 }
 ```
