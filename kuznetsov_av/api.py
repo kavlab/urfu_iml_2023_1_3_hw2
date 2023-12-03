@@ -28,7 +28,7 @@ async def root() -> str:
     return '{"message": "Converter method: /text-to-speech/convert/"}'
 
 @app.post('/text-to-speech/convert/')
-async def text_to_speach(entity: Request) -> Response:
+async def text_to_speech(entity: Request) -> Response:
     """
     Text-to-audio generation method using text_to_speech_converter.
     """
