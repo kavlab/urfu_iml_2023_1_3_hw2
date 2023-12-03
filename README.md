@@ -47,7 +47,7 @@ streamlit run run.py
 Необходимо ввести текст в текстовое поле и нажать кнопку "Генерировать!!!". В результате появится аудио запись на английском языке с описанием введенного текста.
 
 ![Результат работы моделей "Генератор аудио / Текст"](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/mulyavin_aa/audio_gen_image.png)
-![Результат работы моделей "Генератор аудио / Аудио"](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/kuznetsov_av/text_to_speach_image.png)
+![Результат работы моделей "Генератор аудио / Аудио"](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/kuznetsov_av/text_to_speech_image.png)
 
 ### Описание изображения
 Необходимо выбрать изображение и нажать кнопку "Получить описание изображения". В результате появится текстовое описание изображения на русском языке.
