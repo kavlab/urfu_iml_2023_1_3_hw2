@@ -24,6 +24,7 @@ pinned: false
 API разработано с использованием фреймворка [FastAPI]('https://fastapi.tiangolo.com/'). API доступные для использования:
 1. ```/langdetector/detect``` - Определение языка текста
 2. ```/translator/translate``` - Перевод текста с языка Ru на En
+3. ```/text-to-speech/convert``` - Преобразование текста на английском языке в речь
 
 ## Используемые модели
 - Определение языка текста - [papluca/xlm-roberta-base-language-detection](https://huggingface.co/papluca/xlm-roberta-base-language-detection)
