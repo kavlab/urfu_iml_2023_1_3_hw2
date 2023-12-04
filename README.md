@@ -129,18 +129,11 @@ streamlit run run.py
 #### Пример вызова сервиса Описание загруженного изображения
 Вызвать url сервиса ```<host>/get_description_image/predict/``` методом POST
 
-![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/zvereva_ev/API_image_postman.jpg)
+![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/zvereva_ev/screenshot_api_description_image.jpg)
 
 Передаваемые параметры:
 ```
 {
-    "text": "https://fikiwiki.com/uploads/posts/2022-02/1645000127_53-fikiwiki-com-p-kartinki-krasivie-babochki-narisovannie-55.png"
-}
-```
-
-Результат выполнения:
-```
-{
-    "text": "Фото бабочки с оранжевыми крыльями и белыми точками"
+    "url": "https://fikiwiki.com/uploads/posts/2022-02/1645000127_53-fikiwiki-com-p-kartinki-krasivie-babochki-narisovannie-55.png"
 }
 ```
