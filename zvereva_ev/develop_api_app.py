@@ -5,4 +5,4 @@ class Url(BaseModel):
     """
     Формат ответа
     """
-    text: str
+    url: str
