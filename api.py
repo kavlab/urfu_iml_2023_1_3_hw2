@@ -78,7 +78,7 @@ async def get_description_image_predict(item: develop_api_app.Url):
     Получение ссылки на изображение. Запись изображения в директорию zvereva_ev
     под названием 'image.png для получения его описания
     """
-    response = requests.get(item.text, stream=True)
+    response = requests.get(item.url, stream=True)
     # сохранение изображения для дальнейшей передачи в модель
     with open("image.png", "wb") as f:
         f.write(response.content)
