@@ -1,7 +1,9 @@
+import base64
+
+import kuznetsov_av.text_to_speech_converter as t2s
 from fastapi import FastAPI
 from pydantic import BaseModel
-import kuznetsov_av.text_to_speech_converter as t2s
-import base64
+
 
 class Request(BaseModel):
     """
@@ -21,11 +23,11 @@ class Response(BaseModel):
 app = FastAPI()
 
 @app.get('/')
-async def root() -> str:
+async def root() -> dict:
     """
     Root method of API.
     """
-    return '{"message": "Converter method: /text-to-speech/convert/"}'
+    return {"message": "Converter method: /text-to-speech/convert/"}
 
 @app.post('/text-to-speech/convert/')
 async def text_to_speech(entity: Request) -> Response:

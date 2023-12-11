@@ -1,9 +1,9 @@
-from transformers import pipeline
+import datasets.arrow_dataset
+import numpy as np
+import torch
 import transformers.pipelines.text_to_audio
 from datasets import load_dataset
-import datasets.arrow_dataset
-import torch
-import numpy as np
+from transformers import pipeline
 
 
 def load_model() -> transformers.pipelines.text_to_audio.TextToAudioPipeline:
