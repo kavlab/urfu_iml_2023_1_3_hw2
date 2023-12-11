@@ -37,7 +37,7 @@ async def root():
                 },
                 {
                     "descr": "API для описания загруженного изображения",
-                    "base_url": "/get_description_image"
+                    "base_url": "/get_description_image/predict/"
                 }
             ]}
 
@@ -75,8 +75,7 @@ async def text_to_speech(entity: Request) -> Response:
 @app.post("/get_description_image/predict/")
 async def get_description_image_predict(item: develop_api_app.Url):
     """
-    Получение ссылки на изображение. Запись изображения в директорию zvereva_ev
-    под названием 'image.png для получения его описания
+    Получение ссылки на изображение. Запись изображения под названием 'image.png для получения его описания
     """
     response = requests.get(item.url, stream=True)
     # сохранение изображения для дальнейшей передачи в модель
