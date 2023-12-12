@@ -48,7 +48,7 @@ streamlit run run.py
 ### Генератор аудио
 Необходимо ввести текст в текстовое поле и нажать кнопку "Генерировать!!!". В результате появится аудио запись на английском языке с описанием введенного текста.
 
-![Результат работы моделей "Генератор аудио / Текст"](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/mulyavin_aa/audio_gen_image.png)
+![Результат работы моделей "Генератор аудио / Текст"](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/mulyavin_aa/screens/audio_gen_image.png)
 ![Результат работы моделей "Генератор аудио / Аудио"](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/kuznetsov_av/text_to_speech_image.png)
 
 ### Описание изображения
@@ -65,7 +65,7 @@ streamlit run run.py
 #### Пример вызова сервиса Определение языка текста
 Вызвать url сервиса ```<host>/langdetector/detect``` методом POST
 
-![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/mulyavin_aa/PostmanLangDetect.png)
+![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/mulyavin_aa/screens/PostmanLangDetect.png)
 
 Передаваемые параметры:
 ```
@@ -89,7 +89,7 @@ streamlit run run.py
 #### Пример вызова сервиса Перевод текста с языка Ru на En
 Вызвать url сервиса ```<host>/translator/translate``` методом POST
 
-![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/mulyavin_aa/PostmanTranslate.png)
+![img.png](https://raw.githubusercontent.com/kavlab/urfu_iml_2023_1_3_hw2/main/mulyavin_aa/screens/PostmanTranslate.png)
 
 Передаваемые параметры:
 ```
