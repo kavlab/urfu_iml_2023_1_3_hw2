@@ -20,7 +20,7 @@ def load_image():
         st.image(image_data)
         image_data_open = Image.open(io.BytesIO(image_data))
         # Сохранение изображения из буффера
-        image_data_open.save("image.png")
+        image_data_open.save(f"{os.path.dirname(__file__)}/image_predict_tmp.png")
         return image_data_open
     else:
         return None
@@ -39,7 +39,7 @@ def get_description_image():
     """
     processor, model = load_models()
 
-    raw_image = Image.open("image.png")
+    raw_image = Image.open(f"{os.path.dirname(__file__)}/image_predict_tmp.png")
 
     text = "a photography of"
     inputs = processor(raw_image, text, return_tensors="pt")
@@ -53,7 +53,7 @@ def get_description_image():
 
 
 # Получение полного пути к сохраненному изображению из буффера
-file_path = "urfu_iml_2023_1_3_hw2/zvereva_ev/image.png"
+file_path = f"{os.path.dirname(__file__)}/image_predict_tmp.png"
 absolute_path = os.path.abspath(file_path)
 
 
@@ -71,7 +71,7 @@ def run_():
                 st.warning("Загрузите изображение, чтобы получить описание", icon="🚀")
         else:
             exit()
-        if "image.png" in absolute_path:
-            os.remove("image.png")
+        if f"{os.path.dirname(__file__)}/image_predict_tmp.png" in absolute_path:
+            os.remove(f"{os.path.dirname(__file__)}/image_predict_tmp.png")
     except FileNotFoundError:
         return "Изображение не загружено"
