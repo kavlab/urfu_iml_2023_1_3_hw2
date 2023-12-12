@@ -1,3 +1,4 @@
+import os
 import uvicorn
 from fastapi import FastAPI
 
@@ -75,11 +76,11 @@ async def text_to_speech(entity: Request) -> Response:
 @app.post("/get_description_image/predict/")
 async def get_description_image_predict(item: develop_api_app.Url):
     """
-    Получение ссылки на изображение. Запись изображения под названием 'image.png для получения его описания
+    Получение ссылки на изображение. Запись изображения под названием 'image_predict_test_image.png для получения его описания
     """
     response = requests.get(item.url, stream=True)
     # сохранение изображения для дальнейшей передачи в модель
-    with open("image.png", "wb") as f:
+    with open(f"{os.path.dirname(__file__)}/zvereva_ev/image_predict_tmp.png", "wb") as f:
         f.write(response.content)
 
     return get_description_image.get_description_image()
