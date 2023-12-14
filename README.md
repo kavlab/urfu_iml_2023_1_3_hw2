@@ -9,7 +9,9 @@ app_file: run.py
 pinned: false
 ---
 
-# Программная инженерия. Практические задания №2, №3 и №4
+[![Tests](https://github.com/kavlab/urfu_iml_2023_1_3_hw2/actions/workflows/python-app.yml/badge.svg)](https://github.com/kavlab/urfu_iml_2023_1_3_hw2/actions/workflows/python-app.yml)
+
+# Программная инженерия. Практические задания №2, №3, №4 и №5
 
 Приложение разработано с использованием фреймворка [Streamlit](https://streamlit.io/).
 Состоит из двух страниц и Главной страницы:
@@ -137,3 +139,5 @@ streamlit run run.py
     "url": "https://fikiwiki.com/uploads/posts/2022-02/1645000127_53-fikiwiki-com-p-kartinki-krasivie-babochki-narisovannie-55.png"
 }
 ```
+
+Тестирует GitHub Actions
