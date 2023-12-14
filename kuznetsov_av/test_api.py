@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from kuznetsov_av.api import Request, Response, app
+from kuznetsov_av.api import Request, app
 
 client = TestClient(app)
 

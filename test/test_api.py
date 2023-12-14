@@ -1,5 +1,5 @@
+import kuznetsov_av
 from fastapi.testclient import TestClient
-
 from run_api import app
 
 client = TestClient(app)
@@ -112,3 +112,40 @@ def test_translator_en_to_en() -> None:
     assert api_resp.status_code == 200
     assert len(response.text) > 0
     assert response.text == 'Good day to all cats!'
+
+
+def test_text_to_speech_ok():
+    """
+    Тест API преобразования текста в речь
+    """
+    response = client.post(
+        url='/text-to-speech/convert/',
+        json=kuznetsov_av.api.Request(text='Test').model_dump()
+    )
+
+    assert response.status_code == 200
+    assert response.json().get('audio') is not None
+    assert type(response.json().get('audio')) == str
+    assert len(response.json().get('audio')) > 0
+    assert response.json().get('sampling_rate') is not None
+    assert type(response.json().get('sampling_rate')) == int
+
+
+def test_text_to_speech_error422():
+    """
+    Тест API преобразования текста в речь
+    """
+    response = client.post(
+        url='/text-to-speech/convert/',
+        json=''
+    )
+
+    assert response.status_code == 422
+
+
+def test_root():
+    response = client.get('/')
+
+    assert response.status_code == 200
+    assert response.json().get('message') is not None
+    assert len(response.json().get('message')) > 0
